@@ -4,12 +4,11 @@ import java.util.Objects;
 
 public class Curso {
 	
-	private long id;
+	private Long id;
 	private String descricao;
 	private Integer cargaHoraria;
 	
 	public Curso(long id, String descricao, Integer cargaHoraria) {
-		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.cargaHoraria = cargaHoraria;
@@ -36,7 +35,7 @@ public class Curso {
 		return id == other.id;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
