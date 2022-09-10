@@ -3,6 +3,7 @@ package br.inatel.labs.labrest.server.controller;
 import java.util.List;
 import java.util.Optional;
 
+import br.inatel.labs.labrest.server.exception.CursoNaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +30,7 @@ public class CursoController {
 		if(opCurso.isPresent())
 			return opCurso.get();
 		else{
-			String message =  "Nenhum curso encontrado com id [" + cursoId + "]";
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, message);
+			throw new CursoNaoEncontradoException(cursoId);
 		}
 	}
 
@@ -51,8 +51,7 @@ public class CursoController {
 	public void remover(@PathVariable("id") Long cursoIdRemover){
 		Optional<Curso> opCurso = servico.buscarCursoPeloId(cursoIdRemover);
 		if(opCurso.isEmpty()){
-			String message = "Nenhum curso encontrado com id [" + cursoIdRemover + "]" + " para ser removido";
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, message);
+			throw new CursoNaoEncontradoException(cursoIdRemover);
 		}else{
 			Curso cursoASerRemovido = opCurso.get();
 			servico.removerCursoPeloId(cursoASerRemovido);
