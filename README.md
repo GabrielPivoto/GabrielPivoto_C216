@@ -36,7 +36,7 @@
 O projeto contém o lado cliente e o lado servidor, sendo lab_rest_server o lado servidor e lab_rest_client o lado cliente.
 
 * Clone este repositório na sua máquina;
-* Abra o terminal no diretório **ab_rest_server**;
+* Abra o terminal no diretório **lab_rest_server**;
 * Digite o comando:
 	```
 	mvn spring-boot:run
