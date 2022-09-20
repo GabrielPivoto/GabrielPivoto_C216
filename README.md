@@ -33,7 +33,7 @@
 
 ## Como executar :rocket: <a name="Como-executar"></a>
 
-O projeto contém o lado cliente e o lado servidor, sendo lab_rest_server o lado cliente e lab_rest_client o lado cliente.
+O projeto contém o lado cliente e o lado servidor, sendo lab_rest_server o lado servidor e lab_rest_client o lado cliente.
 
 * Clone este repositório na sua máquina;
 * Abra o terminal no diretório **ab_rest_server**;
