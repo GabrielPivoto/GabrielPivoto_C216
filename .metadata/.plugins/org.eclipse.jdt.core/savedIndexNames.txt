@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+C:\LABS_SD\GabrielPivoto_C216\.metadata\.plugins\org.eclipse.jdt.core
-4213166526.index
-2280562863.index
-1865797976.index
