@@ -4,6 +4,7 @@ import br.inatel.labs.labrest.server.model.Curso;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.reactive.server.EntityExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,5 +71,45 @@ public class CursoControllerTestJava {
         assertNotNull(cursoRespondido.getId());
 
     }
+
+    @Test
+    void dadoCursoIdValido_quandoPutCursoPeloId_entaoRespondeComStatusAccepted(){
+
+        Curso cursoExistente = new Curso(1L,"REST com Spring Boot e Spring WebFlux", 120);
+
+         webTestClient
+                .put()
+                .uri("/curso")
+                .bodyValue(cursoExistente)
+                .exchange()
+                .expectStatus().isAccepted();
+
+    }
+
+    @Test
+    void dadoCursoIdValido_quandoDeleteCursoPeloId_entaoRespondeComStatusNoContentEVazio(){
+
+        Long cursoIdRemover = 1L;
+
+        EntityExchangeResult<Void> cursoDeletado = webTestClient
+                .delete()
+                .uri("/curso/" + cursoIdRemover)
+                .exchange()
+                .expectStatus().isNoContent()
+                .expectBody().isEmpty();
+    }
+
+    @Test
+    void dadoCursoIdInvalido_quandoDeleteCursoPeloId_entaoRespondeComStatusNotFound(){
+
+        Long cursoIdRemover = 99L;
+
+        webTestClient
+                .delete()
+                .uri("/curso/" + cursoIdRemover)
+                .exchange()
+                .expectStatus().isNotFound();
+    }
+
 
 }
