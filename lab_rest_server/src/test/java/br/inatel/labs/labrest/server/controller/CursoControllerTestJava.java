@@ -73,25 +73,26 @@ public class CursoControllerTestJava {
     }
 
     @Test
-    void dadoCursoIdValido_quandoPutCursoPeloId_entaoRespondeComStatusAccepted(){
+    void dadoCursoIdValido_quandoPutCursoPeloId_entaoRespondeComStatusAcceptedECorpoVazio(){
 
-        Curso cursoExistente = new Curso(1L,"REST com Spring Boot e Spring WebFlux", 120);
+        Curso cursoExistente = new Curso(1L,"Descricao atualizada do curso", 120);
 
          webTestClient
                 .put()
                 .uri("/curso")
                 .bodyValue(cursoExistente)
                 .exchange()
-                .expectStatus().isAccepted();
+                .expectStatus().isAccepted()
+                 .expectBody().isEmpty();
 
     }
 
     @Test
-    void dadoCursoIdValido_quandoDeleteCursoPeloId_entaoRespondeComStatusNoContentEVazio(){
+    void dadoCursoIdValido_quandoDeleteCursoPeloId_entaoRespondeComStatusNoContentECorpoVazio(){
 
-        Long cursoIdRemover = 1L;
+        Long cursoIdRemover = 2L; //Id trocado para não quebrar outros testes
 
-        EntityExchangeResult<Void> cursoDeletado = webTestClient
+        webTestClient
                 .delete()
                 .uri("/curso/" + cursoIdRemover)
                 .exchange()
