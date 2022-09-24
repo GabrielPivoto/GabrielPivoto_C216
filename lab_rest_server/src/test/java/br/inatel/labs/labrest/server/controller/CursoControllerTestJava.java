@@ -40,6 +40,7 @@ public class CursoControllerTestJava {
 
         assertNotNull(cursoRespondido);
         assertEquals(cursoRespondido.getId(),cursoIdValido);
+        
     }
 
     @Test
