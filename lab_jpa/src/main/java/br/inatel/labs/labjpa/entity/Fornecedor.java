@@ -22,6 +22,21 @@ public class Fornecedor {
     @ManyToMany
     private List<Produto> listaProduto;
 
+    public Fornecedor() {
+    }
+
+    public Fornecedor(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+
+    @Override
+    public String toString() {
+        return "Fornecedor{" +
+                "id=" + id +
+                ", razaoSocial='" + razaoSocial + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

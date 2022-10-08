@@ -2,10 +2,11 @@ package br.inatel.labs.labjpa.service;
 
 import br.inatel.labs.labjpa.entity.Produto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @Service
