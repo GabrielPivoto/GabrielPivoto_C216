@@ -1,16 +1,21 @@
 package br.inatel.labs.labjpa;
 
 import br.inatel.labs.labjpa.entity.Fornecedor;
+import br.inatel.labs.labjpa.entity.NotaCompra;
+import br.inatel.labs.labjpa.entity.NotaCompraItem;
 import br.inatel.labs.labjpa.entity.Produto;
 import br.inatel.labs.labjpa.service.FornecedorService;
+import br.inatel.labs.labjpa.service.NotaCompraService;
 import br.inatel.labs.labjpa.service.ProdutoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 class DataLoader {
 
 	@Autowired
@@ -19,7 +24,10 @@ class DataLoader {
 	@Autowired
 	private FornecedorService fornecedorService;
 
-	@Test
+	@Autowired
+	private NotaCompraService notaCompraService;
+
+	//@Test
 	void load() {
 
 		//1. produto
@@ -47,6 +55,36 @@ class DataLoader {
 
 		List<Fornecedor> listaDeFornecedores = fornecedorService.listar();
 		listaDeFornecedores.forEach(System.out::println);
+
+		//3. NotaCompra
+		NotaCompra nc1 = new NotaCompra( LocalDate.of(2021, 1, 15), f1);
+		nc1 = notaCompraService.salvar(nc1);
+
+		NotaCompra nc2 = new NotaCompra( LocalDate.of(2022, 2, 20), f2);
+		nc2 = notaCompraService.salvar(nc2);
+
+		notaCompraService.listarNotaCompra().forEach( System.out::println );
+
+
+		//4. NotaCompraItem
+		NotaCompraItem i1_1 = new NotaCompraItem(nc1, p1, new BigDecimal("300.00"), 2);
+		NotaCompraItem i1_2 = new NotaCompraItem(nc1, p2, new BigDecimal("1000.00"), 1);
+		NotaCompraItem i1_3 = new NotaCompraItem(nc1, p3, new BigDecimal("500.00"), 3);
+		i1_1 = notaCompraService.salvar(i1_1);
+		i1_2 = notaCompraService.salvar(i1_2);
+		i1_3 = notaCompraService.salvar(i1_3);
+
+		NotaCompraItem i2_1 = new NotaCompraItem(new BigDecimal("400.00"),7, nc2, p4 );
+		NotaCompraItem i2_2 = new NotaCompraItem(new BigDecimal("1000.00"),2, nc2, p2 );
+		NotaCompraItem i2_3 = new NotaCompraItem(new BigDecimal("700.00"),1, nc2, p5 );
+
+		i2_1 = notaCompraService.salvar(i2_1);
+		i2_2 = notaCompraService.salvar(i2_2);
+		i2_3 = notaCompraService.salvar(i2_3);
+
+		notaCompraService.listarNotaCompraItem().forEach( System.out::println );
+
+
 	}
 
 }

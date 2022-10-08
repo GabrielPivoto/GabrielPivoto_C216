@@ -71,6 +71,25 @@ public class NotaCompraItem {
         this.produto = produto;
     }
 
+    public NotaCompraItem(BigDecimal valorCompraProduto, Integer quantidade, NotaCompra notaCompra, Produto produto) {
+        this.valorCompraProduto = valorCompraProduto;
+        this.quantidade = quantidade;
+        this.notaCompra = notaCompra;
+        this.produto = produto;
+    }
+
+    public NotaCompraItem() {
+    }
+
+    @Override
+    public String toString() {
+        return "NotaCompraItem{" +
+                "id=" + id +
+                ", valorCompraProduto=" + valorCompraProduto +
+                ", quantidade=" + quantidade +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

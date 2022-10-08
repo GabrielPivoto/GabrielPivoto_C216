@@ -55,6 +55,22 @@ public class NotaCompra {
         this.listaNotaCompraItem = listaNotaCompraItem;
     }
 
+    public NotaCompra(LocalDate dataEmissao, Fornecedor fornecedor) {
+        this.dataEmissao = dataEmissao;
+        this.fornecedor = fornecedor;
+    }
+
+    public NotaCompra() {
+    }
+
+    @Override
+    public String toString() {
+        return "NotaCompra{" +
+                "id=" + id +
+                ", dataEmissao=" + dataEmissao +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
