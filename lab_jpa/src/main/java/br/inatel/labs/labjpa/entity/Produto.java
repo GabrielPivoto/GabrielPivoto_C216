@@ -38,6 +38,21 @@ public class Produto {
         this.descricao = descricao;
     }
 
+    public Produto(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Produto() {
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", descricao='" + descricao + '\'' +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
